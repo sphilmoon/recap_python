@@ -1,58 +1,61 @@
-# day 4 of python recap: basic input and output 
+# day 4 of python recap: basic input and output
 
-# ask the user for their name
-name = input(“Enter your name: “)
+try:
+    # Ask the user for input
+    sample_name = input("Enter the RNA sample name: ")
+    total_reads = int(input("Enter the total number of reads: "))
+    good_reads = int(input("Enter the number of good reads: "))
+    low_quality_reads = int(input("Enter the number of low-quality reads: "))
 
-# print a greeting
-print(f”Hello, {name}. Nice to meet you!”)
+    # Validate the reads
+    if good_reads + low_quality_reads > total_reads:
+        print("Error: The sum of good and low-quality reads exceeds the total reads.")
+    else:
+        # Ask for custom thresholds (with defaults)
+        high_quality_threshold = float(input("Enter the high-quality threshold (default is 90%): ") or 90)
+        low_quality_threshold = float(input("Enter the low-quality threshold (default is 5%): ") or 5)
 
-# ask for age
-age = int(input(“Please enter your age: “))
+        # Calculate percentages
+        percentage_good = (good_reads / total_reads) * 100
+        percentage_low_quality = (low_quality_reads / total_reads) * 100
 
-# calculate the year the user was born
-current_year = 2024
-birth_year = current_year - age
+        # Print a formatted report
+        report = (
+            f"\n--- RNA Sample Quality Report ---\n"
+            f"Sample: {sample_name}\n"
+            f"Total reads: {total_reads}\n"
+            f"Good reads: {good_reads} ({percentage_good:.2f}%)\n"
+            f"Low-quality reads: {low_quality_reads} ({percentage_low_quality:.2f}%)\n"
+        )
 
-# print the birth year
-print(f”You were born in {birth_year}. “)
+        # Check quality criteria
+        if percentage_good >= high_quality_threshold and percentage_low_quality <= low_quality_threshold:
+            report += "Result: Excellent sample quality!\n"
+        elif percentage_good >= high_quality_threshold:
+            report += f"Result: Good sample quality, but the low-quality reads exceed {low_quality_threshold}%.\n"
+        else:
+            report += "Result: Poor sample quality.\n"
 
-# output formatting with print()
-sample_name = “RNA_Sample_001”
-quality_score = 98.54
+        print(report)
 
-print(f”Sample Name: {sample_name}, Quality Score = {quality_score:.2f}.”)
+        # Create a simple text-based bar chart
+        print("\n--- Bar Chart Visualization ---")
 
-# ask the user for sample information input
-sample_name = input(“Enter the RNA sample name: “)
-total_reads = int(input(“Enter the total number of reads: “))
-good_reads = int(input(“Enter the number of good reads: “))
-low_quality_reads = int(input(“Enter the number of low-quality reads: “))
+        # Set max width for the bar
+        max_width = 50
 
-# calculate the %
-percentage_good = (good_reads / total reads) * 100 
-percentage_low = (low_quality_reads / total reads) * 100 
+        # Normalize the percentages to fit the max width
+        good_reads_bar = int((percentage_good / 100) * max_width)
+        low_quality_reads_bar = int((percentage_low_quality / 100) * max_width)
 
-try: 
-	total_reads = int(input(“Enter the total number of reads: “))
-	good_reads = int(input(“Enter the number of good reads: “))
+        # Print bars
+        print(f"Good reads:    [{'#' * good_reads_bar:<50}] {percentage_good:.2f}%")
+        print(f"Low-quality:   [{'#' * low_quality_reads_bar:<50}] {percentage_low_quality:.2f}%")
 
-	percentage_good = (good_reads / total reads) * 100 
-	percentage_low = (low_quality_reads / total reads) * 100 
-
+        # Save report to a file
+        with open("rna_report.txt", "w") as file:
+            file.write(report)
+        print("Report saved to rna_report.txt.")
+    
 except ValueError:
-	print(“Please enter valid integer values for the reads.”) 
-
-# print a formatted report 
-print(“\n—- RNA Sample Quality Report —-“)
-print(f”Sample Name: {sample_name}”) 
-print(f”Total reads: {total_reads}”)
-print(f”Good reads: {good_reads} ({percentage_good:.2f}%)”) 
-print(f”Low Quality Reads: {low_quality_reads ({percentage_low:.2f}%)”)
-
-# check quality criteria aka giving the user feedback 
-if percentage_good >= 90 and percentage_low <=5:
-	print(“Result: Excellent sample quality!”)
-elif percentage_good > =80: 
-	print(“Result: Good sample quality.”)
-else:
-	print(“Result: Poor sample quality.”) 
+    print("Error: Please enter valid numeric values for the reads.")
