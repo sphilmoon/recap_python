@@ -1,0 +1,2 @@
+Sample_005: Quality=90.2, Reads=122000
+Sample_005: Quality=90.2, Reads=122000

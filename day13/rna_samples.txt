@@ -1,0 +1,4 @@
+Sample_001: Quality=95.5, Reads=100000
+Sample_002: Quality=89.0, Reads=120000
+Sample_003: Quality=78.3, Reads=95000
+Sample_004: Quality=82.1, Reads=105000
