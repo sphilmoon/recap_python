@@ -1,0 +1,45 @@
+date: 2024-01-25 09:36:51 UTC
+immcantation: 4.4.0-260-g1f777c236daa+
+presto: 0.7.2
+changeo: 1.3.0
+alakazam: 1.2.0-80-g15495eff377c+
+shazam: 1.1.2-58-gf6c14c4d9f2c+
+tigger: b0ad8b4f4fb9+
+rdi: fe12005bd3c4+
+scoper: 1.2.0-65-gd3ee771d2b28+
+dowser: 2.0.0-19-g8c0d17173ab5+
+prestor: 0.0.8+
+
+preprocess-phix:
+  - "preprocess-phix.sh"
+  - "PhiX cleaning"
+presto-abseq:
+  - "presto-abseq.sh"
+  - "NEBNext / AbSeq Immune Sequencing preprocessing"
+presto-clontech:
+  - "presto-clontech.sh"
+  - "Takara Bio / Clontech SMARTer v1 preprocessing"
+presto-clontech-umi:
+  - "presto-clontech-umi.sh"
+  - "Takara Bio / Clontech SMARTer v2 (with UMI) preprocessing"
+changeo-10x:
+  - "changeo-10x.sh"
+  - "10X Genomics V(D)J annotation and clonal assignment"
+changeo-igblast:
+  - "changeo-igblast.sh"
+  - "IgBLAST annotation"
+changeo-clone:
+  - "changeo-clone.sh"
+  - "Clonal assignment using Change-O"
+scoper-clone:
+  - "scoper-clone.R"
+  - "Clonal assignment using SCOPer"
+shazam-threshold:
+  - "shazam-threshold.R"
+  - "Clonal threshold detection"
+singlecell-filter:
+  - "singlecell-filter.R"
+  - "Remove doublet and light chain only cells."
+tigger-genotype:
+  - "tigger-genotype.R"
+  - "Polymorphism detection and genotyping"
